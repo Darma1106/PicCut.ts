@@ -20,7 +20,7 @@ let canvas = document.querySelector('canvas');
 let img = document.querySelector('#rawImage');
 //监听主图是否加载完毕
 loadup(img);
-createCanvas(canvas,300,200);
+createCanvas(canvas);
 console.log(ctx.canvas);
 function loadup(el){
     el.onload = function(){
