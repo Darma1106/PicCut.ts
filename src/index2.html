@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img id="rawImage" src="./img/Darma1.jpg" alt="">
+    <button >剪切</button>
+    <canvas ></canvas>
+</body>
+<style>
+    button{
+        display: block;
+    }
+    canvas{
+        display: none;
+    }
+    img#rowImage{
+        display: none;
+    }
+    img{
+        border: 0.5px solid white;
+    }
+</style>
+<script type="module">
+    import {PicCutter} from './js/PicCuter.js';
+    const btn = document.querySelector('button');
+    const canvas = document.querySelector('canvas');
+    const img  = document.querySelector('#rawImage');
+    btn.onclick = ()=>{ 
+        a.createCanvas();
+        let p = a.cutPicture();
+        a.showpic(p);
+    }
+    let a = new PicCutter(canvas,img);
+</script>
+</html>
