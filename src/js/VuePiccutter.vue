@@ -25,12 +25,10 @@ export default {
     mounted(){
         this.piccutter = new PicCutter(this.$refs.canvas,this.$refs.rawImg);
         this.piccutter.createCanvas(this.Cwidth,this.Cheight);
-        console.log(this.piccutter);
     },
     methods:{
         cut(){
         this.picArr = this.piccutter.cutPicture(this.picNum);
-        console.log(this.picArr);
     }
     }
 }

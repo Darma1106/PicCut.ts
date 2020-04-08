@@ -6,55 +6,9 @@
 </head>
 <body>
     <img id="rawImage" src="./img/Darma1.jpg" alt="">
-    <button onclick="cutPicture()">剪切</button>
+    <button >剪切</button>
     <canvas ></canvas>
 </body>
-<script>
-//canvas.getContext
-let ctx;
-//原图宽度
-let rWidth;
-//原图高度
-let rHeight;
-let canvas = document.querySelector('canvas');
-let img = document.querySelector('#rawImage');
-//监听主图是否加载完毕
-loadup(img);
-createCanvas(canvas);
-console.log(ctx.canvas);
-function loadup(el){
-    el.onload = function(){
-        rWidth = el.width;
-        rHeight = el.height;
-    }
-}
-function createCanvas(el,Cwidth = 200,Cheight = 200){
-    //Cwidth，新图宽度,Cheight，新图高度
-    el.width = Cwidth;
-    el.height = Cheight;
-    ctx = el.getContext('2d');
-}
-function cutPicture(num = 3){
-    //把图片分割成 num x num个小图
-    let picArr = [];
-    //将画布循环输出每一块
-    for(let i=0;i<num;i++){
-        for(let j=0;j<num;j++){
-        ctx.drawImage(img, j*rWidth/num, i*rHeight/num,rWidth/num,rHeight/num,0,0,ctx.canvas.width,ctx.canvas.height);
-        picArr.push(canvas.toDataURL("image/png"));
-        }
-    }
-    showpic(picArr);
-}
-function showpic(pic){
-    //将图片添加到网页中
-    pic.forEach(element => {
-        let image = new Image();
-        image.src = element;
-        document.body.appendChild(image);
-    });
-}
-</script>
 <style>
     button{
         display: block;
@@ -66,7 +20,19 @@ function showpic(pic){
         display: none;
     }
     img{
-        border: 1px solid white;
+        border: 0.5px solid white;
     }
 </style>
+<script type="module">
+    import {PicCutter} from './js/PicCuter.js';
+    const btn = document.querySelector('button');
+    const canvas = document.querySelector('canvas');
+    const img  = document.querySelector('#rawImage');
+    let a = new PicCutter(canvas,img);
+    btn.onclick = ()=>{ 
+        a.createCanvas();
+        let p = a.cutPicture();
+        a.showpic(p);
+    }
+</script>
 </html>
